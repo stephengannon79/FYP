@@ -11,6 +11,7 @@ import numpy as np
 from pandas import read_csv
 from matplotlib import pyplot
 from sklearn.preprocessing import MinMaxScaler
+import time
 
 
 dataset = read_csv('GRULight.csv')
@@ -99,6 +100,8 @@ for i in range(epochs):
 
 print(f'epoch: {i:3} loss: {single_loss.item():10.10f}')
 
+start=time.time()
+
 future_predictions = 30
 test_inputs = norm_train_data[-window_size:].tolist()
 #print(test_inputs)
@@ -113,6 +116,8 @@ for i in range(future_predictions):
 
 real_predictions = scale.inverse_transform(np.array(test_inputs[window_size:] ).reshape(-1, 1))
 #print(actual_predictions)
+
+end=time.time()
 
 x = np.arange(220, 250, 1)
 
@@ -137,3 +142,4 @@ predicted_AFV = sum(real_predictions)/30
 
 deviation = (predicted_AFV-acctual_AFV)/acctual_AFV
 print(deviation)
+print(end-start,'s')
