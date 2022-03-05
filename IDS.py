@@ -229,7 +229,8 @@ while AFV > lower and AFV < upper:
 	print (AFV)
 	i = i + 5
 	print("Behaviour As Expected")
-	time.sleep(0.1)
+	#Sleep for visual testing
+	#time.sleep(0.1) 
 
 print("Anomolous Behaviour Detected")
 print(i)
